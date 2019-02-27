@@ -18,32 +18,6 @@ matrix:
       compiler: gcc
       addons: *gcc6
       env: COMPILER='g++-6' BUILD_TYPE='Debug'
-
-    # Linux C++14 Clang builds
-    - os: linux
-      compiler: clang
-      addons: &clang38
-        apt:
-          sources: ['llvm-toolchain-precise-3.8', 'ubuntu-toolchain-r-test']
-          packages: ['clang-3.8']
-      env: 
-        - COMPILER='clang++-3.8' BUILD_TYPE='Release' GSL_CXX_STANDARD=14
-        - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8
- 
-    - os: linux
-      compiler: clang
-      addons: *clang38
-      env:  
-        - COMPILER='clang++-3.8' BUILD_TYPE='Debug' GSL_CXX_STANDARD=14
-        - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8
-
-    - os: linux
-      dist: trusty
-      env: COMPILER_NAME=clang CXX=clang++-3.8 CC=clang-3.8 GSL_CXX_STANDARD=14
-      addons:
-        apt:
-          sources: ['llvm-toolchain-precise-3.8', 'ubuntu-toolchain-r-test']
-          packages: ['clang-3.8','cmake','libhidapi-dev','g++-6']
       
     # OSX C++14 Clang Builds
 
