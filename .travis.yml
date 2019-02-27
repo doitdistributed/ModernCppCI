@@ -16,32 +16,26 @@ matrix:
     - os: linux
       compiler: gcc
       addons: *gcc6
-      env: 
-        - COMPILER='g++-6' BUILD_TYPE='Debug'
-        - LIBCXX_BUILD=1
-        - EXTRA_FLAGS="-stdlib=libc++"
+      env: COMPILER='g++-6' BUILD_TYPE='Debug'
 
     # Linux C++14 Clang builds
-   
     - os: linux
       compiler: clang
-      env: COMPILER=clang++-3.8 BUILD_TYPE=Release GSL_CXX_STANDARD=14
-        addons: *clang38
-      
-
+      addons: &clang38
+        apt:
+          sources: ['llvm-toolchain-precise-3.8', 'ubuntu-toolchain-r-test']
+          packages: ['clang-3.8']
+      env: 
+        - COMPILER='clang++-3.8' BUILD_TYPE='Release'
+        - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8
+ 
     - os: linux
       compiler: clang
       addons: *clang38
-      # Clang 3.8
-      env: COMPILER=clang++-3.8 BUILD_TYPE=Debug GSL_CXX_STANDARD=14
-        addons: &clang38
-          apt:
-            packages:
-              - clang-3.8
-              - g++-5
-            sources:
-              - ubuntu-toolchain-r-test
-              - llvm-toolchain-precise-3.8
+      env:  
+        - COMPILER='clang++-3.8' BUILD_TYPE='Debug'
+        - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8
+ 
 
     # OSX C++14 Clang Builds
 
@@ -67,7 +61,6 @@ install:
     elif [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
       which cmake || brew install cmake
     fi
-
 before_script:
   - export CXX=${COMPILER}
   - cd ${TRAVIS_BUILD_DIR}
