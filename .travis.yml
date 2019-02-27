@@ -41,7 +41,7 @@ matrix:
       env: COMPILER_NAME=clang CXX=clang++-3.8 CC=clang-3.8
       addons:
         apt:
-          sources: ['*sources']
+          sources: ['llvm-toolchain-precise-3.8', 'ubuntu-toolchain-r-test']
           packages: ['clang-3.8','cmake','libhidapi-dev','g++-6']
       
     # OSX C++14 Clang Builds
