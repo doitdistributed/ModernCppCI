@@ -25,7 +25,7 @@ matrix:
    
     - os: linux
       compiler: clang
-      - env: COMPILER=clang++-3.8 BUILD_TYPE=Release GSL_CXX_STANDARD=14
+      env: COMPILER=clang++-3.8 BUILD_TYPE=Release GSL_CXX_STANDARD=14
         addons: *clang38
       
 
@@ -33,7 +33,7 @@ matrix:
       compiler: clang
       addons: *clang38
       # Clang 3.8
-      - env: COMPILER=clang++-3.8 BUILD_TYPE=Debug GSL_CXX_STANDARD=14
+      env: COMPILER=clang++-3.8 BUILD_TYPE=Debug GSL_CXX_STANDARD=14
         addons: &clang38
           apt:
             packages:
