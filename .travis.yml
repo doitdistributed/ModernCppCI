@@ -35,20 +35,15 @@ matrix:
       env:  
         - COMPILER='clang++-3.8' BUILD_TYPE='Debug' GSL_CXX_STANDARD=14
         - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8
- 
+
     - os: linux
-       dist: trusty
-       env: COMPILER_NAME=clang CXX=clang++-3.8 CC=clang-3.8
-       addons:
-         apt:
-            packages:
-             - cmake
-              - libhidapi-dev
-              - g++-5
-              - clang-3.8
-          sources: *sources
-          
-          
+      dist: trusty
+      env: COMPILER_NAME=clang CXX=clang++-3.8 CC=clang-3.8
+      addons:
+        apt:
+          sources: ['*sources']
+          packages: ['clang-3.8','cmake','libhidapi-dev','g++-5']
+      
     # OSX C++14 Clang Builds
 
     - os: osx
